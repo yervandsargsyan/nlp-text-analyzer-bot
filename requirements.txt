@@ -1,8 +1,8 @@
-```txt
+
 python-telegram-bot==20.7
 transformers
 torch
 numpy
 pandas
 scikit-learn
-```
+
