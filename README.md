@@ -8,16 +8,6 @@ Use case: automatically send messages from your profile to the bot and automatic
 
 * multilingual context analysis (Sentiment Analysis) 
 
-
-## Project Structure
-
-*nlp-text-analyzer-bot/
-*├── bot/ # Telegram bot code
-*├── models/ # Model loader
-*├── LICENSE.txt # License file
-*├── requirements.txt # Python dependencies
-*└── README.md # Project description
-
 ## How to Run Locally
 
 1. Install dependencies:
@@ -26,7 +16,6 @@ Use case: automatically send messages from your profile to the bot and automatic
    export BOT\_TOKEN=your\_telegram\_bot\_token / set BOT\_TOKEN=your\_telegram\_bot\_token
 3. Run the bot:
    python bot/main.py
-
 
 ## Upcoming updates
 * Toxicity Detection
