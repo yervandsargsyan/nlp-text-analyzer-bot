@@ -11,12 +11,12 @@ Use case: automatically send messages from your profile to the bot and automatic
 
 ## Project Structure
 
-nlp-text-analyzer-bot/
-├── bot/ # Telegram bot code
-├── models/ # Model loader
-├── LICENSE.txt # License file
-├── requirements.txt # Python dependencies
-└── README.md # Project description
+*nlp-text-analyzer-bot/
+*├── bot/ # Telegram bot code
+*├── models/ # Model loader
+*├── LICENSE.txt # License file
+*├── requirements.txt # Python dependencies
+*└── README.md # Project description
 
 ## How to Run Locally
 
