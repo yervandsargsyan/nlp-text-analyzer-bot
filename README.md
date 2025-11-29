@@ -9,12 +9,12 @@ Use case: automatically send messages from your profile to the bot and automatic
 * Multilingual sentiment analysis using ensemble models
 
 ## How to Run Locally
-1. Install dependencies:
-```pip install -r requirements.txt```
-2. Set your Telegram bot token as an environment variable:
+1. Install dependencies:<br>
+```pip install -r requirements.txt```<br>
+2. Set your Telegram bot token as an environment variable:<br>
    Linux/Mac: ```bash export BOT\_TOKEN=your\_telegram\_bot\_token ```<br>
-   Windows: ```bash set BOT\_TOKEN=your\_telegram\_bot\_token ```
-3. Run the bot:
+   Windows: ```bash set BOT\_TOKEN=your\_telegram\_bot\_token ```<br>
+3. Run the bot:<br>
    python ```bash bot/main.py```
 
 ## Upcoming updates
