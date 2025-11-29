@@ -1,3 +1,4 @@
+langid
 python-telegram-bot==20.7
 torch
 transformers
@@ -11,3 +12,4 @@ aiohttp>=3.8.1
 tokenizers>=0.13.3
 sentencepiece>=0.1.99
 scipy>=1.10.1
+fasttext
