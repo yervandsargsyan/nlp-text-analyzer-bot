@@ -7,3 +7,7 @@ scikit-learn
 langdetect
 emoji==0.6.0
 huggingface_hub[hf_xet]
+aiohttp>=3.8.1
+tokenizers>=0.13.3
+sentencepiece>=0.1.99
+scipy>=1.10.1
