@@ -12,7 +12,7 @@ Use case: automatically send messages from your profile to the bot and automatic
 1. Install dependencies:
 ```pip install -r requirements.txt```
 2. Set your Telegram bot token as an environment variable:
-   Linux/Mac: ```bash export BOT\_TOKEN=your\_telegram\_bot\_token ``` 
+   Linux/Mac: ```bash export BOT\_TOKEN=your\_telegram\_bot\_token ```<br>
    Windows: ```bash set BOT\_TOKEN=your\_telegram\_bot\_token ```
 3. Run the bot:
    python ```bash bot/main.py```
