@@ -36,7 +36,6 @@ class ThreeModelsEnsemble:
         loaded = []
         for name in self.model_names:
             try:
-                # Используем task "sentiment-analysis" — большинство моделей поддерживает
                 p = pipeline("sentiment-analysis", model=name, device=self.device)
                 loaded.append(p)
                 logger.info("Loaded model %s (device=%s)", name, self.device)
@@ -51,7 +50,6 @@ class ThreeModelsEnsemble:
         Асинхронный wrapper: загрузка моделей в фоне, если ещё не загружены.
         """
         if self.models is None:
-            # выполняем блокирующую загрузку в потоке
             await asyncio.to_thread(self._load_models_sync)
 
     async def classify_text_async(self, text: str) -> Tuple[str, float]:
@@ -62,8 +60,6 @@ class ThreeModelsEnsemble:
         """
         await self._ensure_models_loaded()
 
-        # Оборачиваем реальное sync-вычисление в общий кэшный синхронный слой.
-        # lru_cache работает только для sync-функций, поэтому вызываем через to_thread.
         async with infer_semaphore:
             return await asyncio.to_thread(self._classify_text_sync, text)
 
@@ -76,20 +72,18 @@ class ThreeModelsEnsemble:
         ВНИМАНИЕ: _classify_text_sync выполняется внутри потока (to_thread).
         """
         if self.models is None:
-            # Если кто-то вызвал напрямую — попытка загрузить модели синхронно
             self._load_models_sync()
 
         weighted_scores = []
         for model in self.models:
             try:
-                res = model(text)[0]  # pipeline возвращает list[dict]
+                res = model(text)[0]  
                 label = res.get("label", "")
                 score = float(res.get("score", 1.0))
                 numeric = label_to_numeric(label)
                 weighted_scores.append(numeric * (score ** self.score_coef))
             except Exception:
                 logger.exception("Model inference failed in ensemble for text: %r", text)
-                # резервное значение — нейтральный вклад
                 weighted_scores.append(0.5)
 
         if not weighted_scores:
@@ -107,7 +101,6 @@ class ThreeModelsEnsemble:
         return sentiment_type, float(avg_score)
 
 
-# ------------- Singletons для трёх ансамблей -------------
 _eng_model: Optional[ThreeModelsEnsemble] = None
 _ru_model: Optional[ThreeModelsEnsemble] = None
 _multi_model: Optional[ThreeModelsEnsemble] = None
@@ -155,7 +148,6 @@ def get_multi_model() -> ThreeModelsEnsemble:
     return _multi_model
 
 
-# ------------- Общая асинхронная точка входа -------------
 async def get_sentiment(text: str) -> Tuple[str, float]:
     """
     Асинхронная функция для использования в боте.
